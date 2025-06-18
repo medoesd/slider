@@ -10,55 +10,22 @@
 
     <style>
         @charset "utf-8";
-
-        /******* Fonts Import Start **********/
         @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-        /********* Fonts Face CSS End **********/
 
-        /******* Common Element CSS Start ******/
         * {
-          margin: 0px;
-          padding: 0px;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
         }
         body {
           font-family: "Roboto", sans-serif;
           font-size: 16px;
-          /* Added to hide horizontal scrollbar caused by carousel animations */
           overflow-x: hidden;
-        }
-        .clear {
-          clear: both;
-        }
-        img {
-          max-width: 100%;
-          border: 0px;
-        }
-        ul,
-        ol {
-          list-style: none;
-        }
-        a {
-          text-decoration: none;
-          color: inherit;
-          outline: none;
-          transition: all 0.4s ease-in-out;
-          -webkit-transition: all 0.4s ease-in-out;
-        }
-        a:focus,
-        a:active,
-        a:visited,
-        a:hover {
-          text-decoration: none;
-          outline: none;
-        }
-        a:hover {
-          color: #e73700;
         }
         h2 {
           margin-bottom: 48px;
           padding-bottom: 16px;
           font-size: 20px;
-          line-height: 28px;
           font-weight: 700;
           position: relative;
           text-transform: capitalize;
@@ -68,12 +35,6 @@
           font-size: 28px;
           line-height: 36px;
         }
-        button {
-          outline: none !important;
-        }
-        /******* Common Element CSS End *********/
-
-        /* -------- title style ------- */
         .line-title {
           position: relative;
           width: 400px;
@@ -96,41 +57,42 @@
           background: #e73700;
         }
 
-        /******* Middle section CSS Start ******/
+        /* Main Section Styling */
         .game-section {
-          padding: 60px 0; /* Use padding on top/bottom only */
+          padding: 60px 0;
         }
-        /* The Owl Carousel stage needs some extra love for centering to work well */
         .game-section .owl-stage-outer {
+            /* Adds padding so the centered, larger item doesn't get cut off */
             padding: 40px 0;
         }
         .game-section .owl-stage {
           display: flex;
-          display: -webkit-flex;
-          align-items: center; /* Vertically align items */
+          align-items: center; /* Crucial for vertical alignment */
         }
+        .game-section .owl-item {
+          /* This ensures the items transition smoothly when changing size */
+          transition: all 0.4s ease-in-out;
+        }
+
+        /* Individual Item Styling */
         .game-section .item {
-          margin: 0 15px; /* Use margin for spacing */
           width: 320px;
           height: 400px;
+          margin: 0 15px;
           display: flex;
-          display: -webkit-flex;
           align-items: flex-end;
-          -webkit-align-items: flex-end;
           background: #343434 no-repeat center center / cover;
           border-radius: 16px;
           overflow: hidden;
           position: relative;
           transition: all 0.4s ease-in-out;
-          -webkit-transition: all 0.4s ease-in-out;
           cursor: pointer;
+          transform: scale(0.9); /* Un-centered items are slightly smaller */
         }
         
-        /* === CSS FIX: Target the '.center' item provided by Owl Carousel === */
-        /* This rule now correctly targets the centered item for expansion */
+        /* The key change: The item inside the .owl-item.center is scaled up */
         .game-section .owl-item.center .item {
-          width: 500px;
-          height: 400px;
+          transform: scale(1); /* Center item is full size */
           box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
         }
 
@@ -151,26 +113,18 @@
           z-index: 1;
           overflow: hidden;
           transform: translateY(calc(100% - 54px));
-          -webkit-transform: translateY(calc(100% - 54px));
           transition: all 0.4s ease-in-out;
-          -webkit-transition: all 0.4s ease-in-out;
         }
-        /* Target the '.center' item for the description reveal */
         .game-section .owl-item.center .item .item-desc {
           transform: none;
-          -webkit-transform: none;
         }
         .game-section .item-desc p {
           opacity: 0;
-          -webkit-transform: translateY(32px);
           transform: translateY(32px);
           transition: all 0.4s ease-in-out 0.2s;
-          -webkit-transition: all 0.4s ease-in-out 0.2s;
         }
-        /* Target the '.center' item for the paragraph fade-in */
         .game-section .owl-item.center .item .item-desc p {
           opacity: 1;
-          -webkit-transform: translateY(0);
           transform: translateY(0);
         }
         .game-section .owl-theme.custom-carousel .owl-dots {
@@ -178,42 +132,12 @@
           position: relative;
           z-index: 5;
         }
-        /******** Middle section CSS End *******/
 
-        /***** responsive css Start ******/
-        @media (max-width: 991px) {
-          .game-section .item {
-            width: 240px;
-            height: 330px;
-          }
-          .game-section .owl-item.center .item {
-            width: 400px;
-            height: 330px;
-          }
-        }
-
+        /* Responsive Adjustments */
         @media (max-width: 767px) {
-          body { font-size: 14px; }
-          h2 { margin-bottom: 20px; }
-          h3 { font-size: 19px; line-height: 24px; }
-          .line-title { width: 250px; }
-
           .game-section .item {
-            width: 200px;
-            height: 280px;
-            margin: 0 10px;
-          }
-          
-          /* Use '.center' and a responsive 'vw' unit for mobile */
-          .game-section .owl-item.center .item {
-            width: 85vw; /* Use viewport width to ensure it fits */
-            height: 280px;
-          }
-
-          .game-section .item-desc {
-            padding: 0 14px 5px;
-            transform: translateY(calc(100% - 42px));
-            -webkit-transform: translateY(calc(100% - 42px));
+            width: 250px;
+            height: 350px;
           }
         }
     </style>
@@ -223,46 +147,40 @@
     <section class="game-section">
       <h2 class="line-title" style="margin-left: 5%;">trending games</h2>
       <div class="owl-carousel custom-carousel owl-theme">
-        <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
+        <div class="item" data-position="0" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
           <div class="item-desc">
             <h3>Dota 2</h3>
-            <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-              Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+            <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
           </div>
         </div>
-        <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
+        <div class="item" data-position="1" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
           <div class="item-desc">
             <h3>The Witcher 3</h3>
-            <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense
-              of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+            <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
           </div>
         </div>
-        <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
+        <div class="item" data-position="2" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
           <div class="item-desc">
             <h3>RDR 2</h3>
-            <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-              Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+            <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
           </div>
         </div>
-        <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
+        <div class="item" data-position="3" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
           <div class="item-desc">
             <h3>PUBG Mobile</h3>
-            <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-              Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+            <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
           </div>
         </div>
-        <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/fortnite.jpg);">
+        <div class="item" data-position="4" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/fortnite.jpg);">
           <div class="item-desc">
             <h3>Fortnite</h3>
-            <p>Battle royale where 100 players fight to be the last person standing. which was a community-created mod
-              for Blizzard Entertainment's Warcraft III.</p>
+            <p>Battle royale where 100 players fight to be the last person standing. which was a community-created mod.</p>
           </div>
         </div>
-        <div class="item" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/far-cry-5.jpg);">
+        <div class="item" data-position="5" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/far-cry-5.jpg);">
           <div class="item-desc">
             <h3>Far Cry 5</h3>
-            <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft.
-              which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+            <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft. A community-created mod.</p>
           </div>
         </div>
       </div>
@@ -273,10 +191,37 @@
 
     <script>
         $(document).ready(function () {
-          $(".custom-carousel").owlCarousel({
-            autoWidth: true,
+          var carousel = $(".custom-carousel");
+
+          carousel.owlCarousel({
             loop: true,
-            center: true // This is the most important option
+            center: true,
+            margin: 30,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 3
+                }
+            }
+          });
+
+          // New click handler that uses the 'data-position' attribute
+          carousel.on("click", ".item", function () {
+            // Find the parent .owl-item
+            var $parentItem = $(this).closest('.owl-item');
+            
+            // Check if the clicked item is already centered
+            if ($parentItem.hasClass('center')) {
+              return; // Do nothing if it's already the center item
+            }
+
+            // Get the logical position from the data attribute
+            var position = $(this).data('position');
+            
+            // Trigger the carousel to move to the item's logical position
+            carousel.trigger('to.owl.carousel', [position, 300]);
           });
         });
     </script>

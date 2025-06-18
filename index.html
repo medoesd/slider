@@ -97,17 +97,20 @@
         }
 
         /******* Middle section CSS Start ******/
-        /* -------- Landing page ------- */
         .game-section {
-          padding: 60px 0; /* Adjusted padding */
+          padding: 60px 0; /* Use padding on top/bottom only */
+        }
+        /* The Owl Carousel stage needs some extra love for centering to work well */
+        .game-section .owl-stage-outer {
+            padding: 40px 0;
         }
         .game-section .owl-stage {
-          margin: 15px 0;
           display: flex;
           display: -webkit-flex;
+          align-items: center; /* Vertically align items */
         }
         .game-section .item {
-          margin: 0 15px 60px;
+          margin: 0 15px; /* Use margin for spacing */
           width: 320px;
           height: 400px;
           display: flex;
@@ -123,7 +126,8 @@
           cursor: pointer;
         }
         
-        /* === CSS FIX 1: Target the '.center' item, not '.active' === */
+        /* === CSS FIX: Target the '.center' item provided by Owl Carousel === */
+        /* This rule now correctly targets the centered item for expansion */
         .game-section .owl-item.center .item {
           width: 500px;
           height: 400px;
@@ -151,7 +155,7 @@
           transition: all 0.4s ease-in-out;
           -webkit-transition: all 0.4s ease-in-out;
         }
-        /* === CSS FIX 2: Target the '.center' item for the description reveal === */
+        /* Target the '.center' item for the description reveal */
         .game-section .owl-item.center .item .item-desc {
           transform: none;
           -webkit-transform: none;
@@ -163,102 +167,47 @@
           transition: all 0.4s ease-in-out 0.2s;
           -webkit-transition: all 0.4s ease-in-out 0.2s;
         }
-        /* === CSS FIX 3: Target the '.center' item for the paragraph fade-in === */
+        /* Target the '.center' item for the paragraph fade-in */
         .game-section .owl-item.center .item .item-desc p {
           opacity: 1;
           -webkit-transform: translateY(0);
           transform: translateY(0);
         }
         .game-section .owl-theme.custom-carousel .owl-dots {
-          margin-top: -20px;
+          margin-top: 0;
           position: relative;
           z-index: 5;
         }
         /******** Middle section CSS End *******/
 
         /***** responsive css Start ******/
-
-        @media (min-width: 992px) and (max-width: 1199px) {
-          h2 {
-            margin-bottom: 32px;
-          }
-          h3 {
-            margin: 0 0 8px;
-            font-size: 24px;
-            line-height: 32px;
-          }
-
-          .game-section {
-            padding: 50px 0;
-          }
+        @media (max-width: 991px) {
           .game-section .item {
-            margin: 0 12px 60px;
-            width: 260px;
-            height: 360px;
-          }
-          
-          .game-section .item-desc {
-            transform: translateY(calc(100% - 46px));
-            -webkit-transform: translateY(calc(100% - 46px));
-          }
-        }
-
-        @media (min-width: 768px) and (max-width: 991px) {
-          h2 {
-            margin-bottom: 32px;
-          }
-          h3 {
-            margin: 0 0 8px;
-            font-size: 24px;
-            line-height: 32px;
-          }
-          .line-title {
-            width: 330px;
-          }
-
-          .game-section {
-            padding: 50px 0 40px;
-          }
-          .game-section .item {
-            margin: 0 12px 60px;
             width: 240px;
             height: 330px;
           }
-          
-          .game-section .item-desc {
-            transform: translateY(calc(100% - 42px));
-            -webkit-transform: translateY(calc(100% - 42px));
+          .game-section .owl-item.center .item {
+            width: 400px;
+            height: 330px;
           }
         }
 
         @media (max-width: 767px) {
-          body {
-            font-size: 14px;
-          }
-          h2 {
-            margin-bottom: 20px;
-          }
-          h3 {
-            margin: 0 0 8px;
-            font-size: 19px;
-            line-height: 24px;
-          }
-          .line-title {
-            width: 250px;
-          }
-          .game-section {
-            padding: 30px 0 20px;
-          }
+          body { font-size: 14px; }
+          h2 { margin-bottom: 20px; }
+          h3 { font-size: 19px; line-height: 24px; }
+          .line-title { width: 250px; }
+
           .game-section .item {
-            margin: 0 10px 40px;
             width: 200px;
             height: 280px;
+            margin: 0 10px;
           }
           
-          /* === CSS FIX 4: Use '.center' and responsive 'vw' unit for mobile === */
+          /* Use '.center' and a responsive 'vw' unit for mobile */
           .game-section .owl-item.center .item {
-            width: 90vw;
-            height: 320px;
+            width: 85vw; /* Use viewport width to ensure it fits */
+            height: 280px;
           }
 
           .game-section .item-desc {
@@ -324,26 +273,10 @@
 
     <script>
         $(document).ready(function () {
-          var carousel = $(".custom-carousel");
-          
-          carousel.owlCarousel({
+          $(".custom-carousel").owlCarousel({
             autoWidth: true,
             loop: true,
-            center: true // This is the key option to add
-          });
-
-          // On initial load, mark the center item as active
-          // Owl Carousel adds the 'center' class automatically
-          // We just need to sync our styles with it.
-          // This logic is now handled entirely by the new CSS selectors.
-
-          // When an item is clicked, trigger the carousel to move to it
-          carousel.on("click", ".owl-item", function (e) {
-            e.preventDefault();
-            // Get the position of the clicked item
-            var itemIndex = $(this).index();
-            // Tell the carousel to move to that item
-            carousel.trigger("to.owl.carousel", [itemIndex, 300, true]);
+            center: true // This is the most important option
           });
         });
     </script>

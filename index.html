@@ -121,11 +121,10 @@
           cursor: pointer;
         }
         
-.game-section .item.active {
-  width: 500px;
-  height: 400px;
-  box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-}
+        .game-section .item.active {
+          width: 500px;
+          box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+        }
 
         .game-section .item:after {
           content: "";
@@ -193,12 +192,6 @@
             height: 360px;
           }
           
-.game-section .item.active {
-  width: 500px;
-  height: 400px;
-  box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-}
-
           .game-section .item-desc {
             transform: translateY(calc(100% - 46px));
             -webkit-transform: translateY(calc(100% - 46px));
@@ -228,12 +221,6 @@
             height: 330px;
           }
           
-.game-section .item.active {
-  width: 500px;
-  height: 400px;
-  box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-}
-
           .game-section .item-desc {
             transform: translateY(calc(100% - 42px));
             -webkit-transform: translateY(calc(100% - 42px));
@@ -266,11 +253,12 @@
             height: 280px;
           }
           
-.game-section .item.active {
-  width: 500px;
-  height: 400px;
-  box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-}
+          /* === FIX START === */
+          .game-section .item.active {
+            width: 90vw; /* Use viewport width to prevent overflow */
+            height: 320px; /* Adjust height for smaller screens */
+          }
+          /* === FIX END === */
 
           .game-section .item-desc {
             padding: 0 14px 5px;

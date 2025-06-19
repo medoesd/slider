@@ -78,7 +78,7 @@
         .game-section .item {
           width: 320px;
           height: 400px;
-          margin: 0 15px;
+          /* Removed margin from here to prevent conflict with Owl's JS setting */
           display: flex;
           align-items: flex-end;
           background: #343434 no-repeat center center / cover;
@@ -93,7 +93,7 @@
         /* The key change: The item inside the .owl-item.center is scaled up */
         .game-section .owl-item.center .item {
           transform: scale(1); /* Center item is full size */
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .game-section .item:after {

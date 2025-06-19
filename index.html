@@ -78,7 +78,6 @@
         .game-section .item {
           width: 320px;
           height: 400px;
-          /* Removed margin from here to prevent conflict with Owl's JS setting */
           display: flex;
           align-items: flex-end;
           background: #343434 no-repeat center center / cover;
@@ -87,12 +86,11 @@
           position: relative;
           transition: all 0.4s ease-in-out;
           cursor: pointer;
-          transform: scale(0.9); /* Un-centered items are slightly smaller */
         }
         
-        /* The key change: The item inside the .owl-item.center is scaled up */
+        /* The key change: The item inside the .owl-item.center is wider */
         .game-section .owl-item.center .item {
-          transform: scale(1); /* Center item is full size */
+          width: 400px;
           box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
@@ -138,6 +136,9 @@
           .game-section .item {
             width: 250px;
             height: 350px;
+          }
+           .game-section .owl-item.center .item {
+            width: 300px;
           }
         }
     </style>
@@ -197,14 +198,7 @@
             loop: true,
             center: true,
             margin: 30,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                768: {
-                    items: 3
-                }
-            }
+            autoWidth: true
           });
 
           // New click handler that uses the 'data-position' attribute

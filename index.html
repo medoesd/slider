@@ -5,40 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Slider</title>
 
+    <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        @charset "utf-8";
-        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
+        /* * General Body and Typography Styles 
+         */
         body {
           font-family: "Roboto", sans-serif;
           font-size: 16px;
+          background-color: #1a1a1a; /* Darker background for better contrast */
+          color: #f2f2f2;
           overflow-x: hidden;
+          margin: 0;
         }
+
         h2 {
           margin-bottom: 48px;
           padding-bottom: 16px;
-          font-size: 20px;
+          font-size: 24px; /* Slightly larger title */
           font-weight: 700;
           position: relative;
           text-transform: capitalize;
         }
+
         h3 {
           margin: 0 0 10px;
           font-size: 28px;
           line-height: 36px;
         }
+
         .line-title {
           position: relative;
           width: 400px;
         }
+
+        /* Decorative line under the title */
         .line-title::before,
         .line-title::after {
           content: "";
@@ -48,38 +55,46 @@
           height: 4px;
           border-radius: 2px;
         }
+
         .line-title::before {
           width: 100%;
-          background: #f2f2f2;
-        }
-        .line-title::after {
-          width: 32px;
-          background: #e73700;
+          background: #333; /* Darker line base */
         }
 
-        /* Main Section Styling */
+        .line-title::after {
+          width: 32px;
+          background: #e73700; /* Accent color */
+        }
+
+        /* * Main Carousel Section Styling 
+         */
         .game-section {
           padding: 60px 0;
         }
+        
+        /* Adds padding so the centered, larger item doesn't get cut off */
         .game-section .owl-stage-outer {
-            /* Adds padding so the centered, larger item doesn't get cut off */
             padding: 40px 0;
         }
+        
+        /* Aligns all carousel items vertically */
         .game-section .owl-stage {
           display: flex;
-          align-items: center; /* Crucial for vertical alignment */
+          align-items: center; 
         }
+        
+        /* Smooth transition for resizing items */
         .game-section .owl-item {
-          /* This ensures the items transition smoothly when changing size */
           transition: all 0.4s ease-in-out;
         }
 
-        /* Individual Item Styling */
+        /* * Individual Carousel Item Styling 
+         */
         .game-section .item {
           width: 320px;
           height: 400px;
           display: flex;
-          align-items: flex-end;
+          align-items: flex-end; /* Aligns description to the bottom */
           background: #343434 no-repeat center center / cover;
           border-radius: 16px;
           overflow: hidden;
@@ -88,13 +103,14 @@
           cursor: pointer;
         }
         
-        /* The key change: The item inside the .owl-item.center is wider */
+        /* The main event: The centered item becomes larger and gets a shadow */
         .game-section .owl-item.center .item {
           width: 400px;
-          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .game-section .item:after {
+        /* Gradient overlay for better text readability */
+        .game-section .item::after {
           content: "";
           display: block;
           position: absolute;
@@ -104,34 +120,40 @@
           top: 0;
           background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
         }
+        
+        /* Description box styling */
         .game-section .item-desc {
           padding: 0 24px 12px;
           color: #fff;
           position: relative;
-          z-index: 1;
+          z-index: 1; /* Ensures text is above the gradient */
           overflow: hidden;
+          /* Hides the description by default by moving it down */
           transform: translateY(calc(100% - 54px));
           transition: all 0.4s ease-in-out;
         }
+        
+        /* When an item is centered, its description slides up into view */
         .game-section .owl-item.center .item .item-desc {
           transform: none;
         }
+
+        /* Paragraph inside description is initially invisible and shifted */
         .game-section .item-desc p {
           opacity: 0;
           transform: translateY(32px);
-          transition: all 0.4s ease-in-out 0.2s;
+          transition: all 0.4s ease-in-out 0.2s; /* Delayed transition for a nice effect */
         }
+        
+        /* Paragraph becomes visible when the item is centered */
         .game-section .owl-item.center .item .item-desc p {
           opacity: 1;
           transform: translateY(0);
         }
-        .game-section .owl-theme.custom-carousel .owl-dots {
-          margin-top: 0;
-          position: relative;
-          z-index: 5;
-        }
 
-        /* Responsive Adjustments */
+        /*
+         * Responsive Adjustments for smaller screens
+         */
         @media (max-width: 767px) {
           .game-section .item {
             width: 250px;
@@ -146,47 +168,54 @@
 <body>
 
     <section class="game-section">
-      <h2 class="line-title" style="margin-left: 5%;">trending games</h2>
+      <h2 class="line-title" style="margin-left: 5%;">Trending Games</h2>
       <div class="owl-carousel custom-carousel owl-theme">
+        <!-- Item 1 -->
         <div class="item" data-position="0" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
           <div class="item-desc">
             <h3>Dota 2</h3>
             <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
           </div>
         </div>
+        <!-- Item 2 -->
         <div class="item" data-position="1" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
           <div class="item-desc">
             <h3>The Witcher 3</h3>
-            <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
+            <p>The Witcher 3 is an action role-playing game set in a vast open world, praised for its narrative and gameplay.</p>
           </div>
         </div>
+        <!-- Item 3 -->
         <div class="item" data-position="2" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
           <div class="item-desc">
             <h3>RDR 2</h3>
-            <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
+            <p>Red Dead Redemption 2 is a Western-themed action-adventure game developed by Rockstar Games.</p>
           </div>
         </div>
+        <!-- Item 4 -->
         <div class="item" data-position="3" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
           <div class="item-desc">
             <h3>PUBG Mobile</h3>
-            <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
+            <p>PlayerUnknown's Battlegrounds is a battle royale where 100 players fight to be the last person standing.</p>
           </div>
         </div>
+        <!-- Item 5 -->
         <div class="item" data-position="4" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/fortnite.jpg);">
           <div class="item-desc">
             <h3>Fortnite</h3>
-            <p>Battle royale where 100 players fight to be the last person standing. which was a community-created mod.</p>
+            <p>Fortnite is a popular battle royale game known for its building mechanics and vibrant art style.</p>
           </div>
         </div>
+        <!-- Item 6 -->
         <div class="item" data-position="5" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/far-cry-5.jpg);">
           <div class="item-desc">
             <h3>Far Cry 5</h3>
-            <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft. A community-created mod.</p>
+            <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft, set in a fictional county in Montana.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- JavaScript Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
@@ -194,28 +223,32 @@
         $(document).ready(function () {
           var carousel = $(".custom-carousel");
 
+          // Initialize Owl Carousel
           carousel.owlCarousel({
-            loop: true,
-            center: true,
-            margin: 30,
-            autoWidth: true
+            loop: true, // Enables continuous looping
+            center: true, // Centers the active item
+            margin: 30, // Space between items
+            autoWidth: true, // Items can have different widths
+            autoplay: true, // <<== This enables autoplay
+            autoplayTimeout: 3000, // <<== 3-second interval between slides
+            autoplayHoverPause: true // <<== Pauses autoplay on mouse hover
           });
 
-          // New click handler that uses the 'data-position' attribute
+          // Click handler to navigate to a specific item
           carousel.on("click", ".item", function () {
-            // Find the parent .owl-item
+            // Find the parent .owl-item of the clicked .item
             var $parentItem = $(this).closest('.owl-item');
             
-            // Check if the clicked item is already centered
+            // Do nothing if the clicked item is already centered
             if ($parentItem.hasClass('center')) {
-              return; // Do nothing if it's already the center item
+              return; 
             }
 
-            // Get the logical position from the data attribute
+            // Get the logical position from the data-position attribute
             var position = $(this).data('position');
             
-            // Trigger the carousel to move to the item's logical position
-            carousel.trigger('to.owl.carousel', [position, 300]);
+            // Trigger the carousel to move to the clicked item's position
+            carousel.trigger('to.owl.carousel', [position, 300]); // 300ms animation speed
           });
         });
     </script>

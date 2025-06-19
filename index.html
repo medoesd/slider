@@ -61,13 +61,8 @@
       text-align: center;
     }
 
-    /* Center the entire carousel */
     .owl-carousel {
       margin: 0 auto;
-    }
-    .owl-carousel .owl-stage-outer {
-      margin: 0 auto;
-      padding: 40px 0;
     }
 
     .owl-stage {
@@ -99,7 +94,6 @@
 
     .item:after {
       content: "";
-      display: block;
       position: absolute;
       height: 100%;
       width: 100%;
@@ -139,13 +133,23 @@
       z-index: 5;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 991px) {
       .item {
-        width: 250px;
-        height: 350px;
+        width: 280px;
+        height: 360px;
       }
       .owl-item.center .item {
-        width: 300px;
+        width: 340px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .item {
+        width: 220px;
+        height: 320px;
+      }
+      .owl-item.center .item {
+        width: 260px;
       }
     }
   </style>
@@ -153,9 +157,7 @@
 <body>
 
   <section class="game-section">
-    <h2 class="line-title" style="margin-left: 5%;">trending games</h2>
-
-    <!-- CENTERED CONTAINER -->
+    <h2 class="line-title" style="margin-left: 5%;">Trending Games</h2>
     <div style="max-width: 1200px; margin: 0 auto;">
       <div class="owl-carousel custom-carousel owl-theme">
         <div class="item" data-position="0" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
@@ -167,31 +169,31 @@
         <div class="item" data-position="1" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
           <div class="item-desc">
             <h3>The Witcher 3</h3>
-            <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
+            <p>The Witcher 3 is a fantasy RPG based on novels, developed by CD Projekt RED with open world freedom.</p>
           </div>
         </div>
         <div class="item" data-position="2" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
           <div class="item-desc">
             <h3>RDR 2</h3>
-            <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
+            <p>Red Dead Redemption 2 is an epic tale of life in America’s unforgiving heartland by Rockstar Games.</p>
           </div>
         </div>
         <div class="item" data-position="3" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
           <div class="item-desc">
             <h3>PUBG Mobile</h3>
-            <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
+            <p>PUBG is a battle royale where 100 players fight to be the last one standing. Developed by Krafton.</p>
           </div>
         </div>
         <div class="item" data-position="4" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/fortnite.jpg);">
           <div class="item-desc">
             <h3>Fortnite</h3>
-            <p>Battle royale where 100 players fight to be the last person standing. which was a community-created mod.</p>
+            <p>Fortnite is a free-to-play battle royale with building mechanics, created by Epic Games.</p>
           </div>
         </div>
         <div class="item" data-position="5" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/far-cry-5.jpg);">
           <div class="item-desc">
             <h3>Far Cry 5</h3>
-            <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft. A community-created mod.</p>
+            <p>Far Cry 5 is a first-person shooter by Ubisoft set in an open-world, rural America taken over by a cult.</p>
           </div>
         </div>
       </div>
@@ -209,20 +211,35 @@
         loop: true,
         center: true,
         margin: 30,
-        autoWidth: true
+        items: 3,
+        stagePadding: 100,
+        autoplay: true,
+        autoplayTimeout: 3500,
+        autoplayHoverPause: true,
+        responsive: {
+          0: {
+            items: 1,
+            stagePadding: 50
+          },
+          600: {
+            items: 2,
+            stagePadding: 60
+          },
+          1000: {
+            items: 3,
+            stagePadding: 100
+          }
+        }
       });
 
       carousel.on("click", ".item", function () {
         var $parentItem = $(this).closest('.owl-item');
-
-        if ($parentItem.hasClass('center')) {
-          return;
-        }
-
+        if ($parentItem.hasClass('center')) return;
         var position = $(this).data('position');
         carousel.trigger('to.owl.carousel', [position, 300]);
       });
     });
   </script>
+
 </body>
 </html>

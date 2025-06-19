@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Game Slider</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
@@ -16,11 +16,13 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: "Roboto", sans-serif;
       font-size: 16px;
       overflow-x: hidden;
     }
+
     h2 {
       margin-bottom: 48px;
       padding-bottom: 16px;
@@ -29,15 +31,12 @@
       position: relative;
       text-transform: capitalize;
     }
-    h3 {
-      margin: 0 0 10px;
-      font-size: 28px;
-      line-height: 36px;
-    }
+
     .line-title {
       position: relative;
       width: 400px;
     }
+
     .line-title::before,
     .line-title::after {
       content: "";
@@ -47,10 +46,12 @@
       height: 4px;
       border-radius: 2px;
     }
+
     .line-title::before {
       width: 100%;
       background: #f2f2f2;
     }
+
     .line-title::after {
       width: 32px;
       background: #e73700;
@@ -58,23 +59,22 @@
 
     .game-section {
       padding: 60px 0;
-      text-align: center;
     }
 
-    .owl-carousel {
-      margin: 0 auto;
+    .game-section .owl-stage-outer {
+      padding: 40px 0;
     }
 
-    .owl-stage {
+    .game-section .owl-stage {
       display: flex;
       align-items: center;
     }
 
-    .owl-item {
+    .game-section .owl-item {
       transition: all 0.4s ease-in-out;
     }
 
-    .item {
+    .game-section .item {
       width: 320px;
       height: 400px;
       display: flex;
@@ -87,12 +87,12 @@
       cursor: pointer;
     }
 
-    .owl-item.center .item {
+    .game-section .owl-item.center .item {
       width: 400px;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .item:after {
+    .game-section .item:after {
       content: "";
       position: absolute;
       height: 100%;
@@ -102,7 +102,7 @@
       background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
     }
 
-    .item-desc {
+    .game-section .item-desc {
       padding: 0 24px 12px;
       color: #fff;
       position: relative;
@@ -112,44 +112,40 @@
       transition: all 0.4s ease-in-out;
     }
 
-    .owl-item.center .item .item-desc {
+    .game-section .owl-item.center .item .item-desc {
       transform: none;
     }
 
-    .item-desc p {
+    .game-section .item-desc p {
       opacity: 0;
       transform: translateY(32px);
       transition: all 0.4s ease-in-out 0.2s;
     }
 
-    .owl-item.center .item .item-desc p {
+    .game-section .owl-item.center .item .item-desc p {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .owl-theme.custom-carousel .owl-dots {
+    .game-section .owl-theme.custom-carousel .owl-dots {
       margin-top: 0;
       position: relative;
       z-index: 5;
     }
 
-    @media (max-width: 991px) {
-      .item {
-        width: 280px;
-        height: 360px;
-      }
-      .owl-item.center .item {
-        width: 340px;
-      }
+    .custom-carousel {
+      display: flex;
+      justify-content: center;
     }
 
-    @media (max-width: 600px) {
-      .item {
-        width: 220px;
-        height: 320px;
+    @media (max-width: 767px) {
+      .game-section .item {
+        width: 250px;
+        height: 350px;
       }
-      .owl-item.center .item {
-        width: 260px;
+
+      .game-section .owl-item.center .item {
+        width: 300px;
       }
     }
   </style>
@@ -157,43 +153,43 @@
 <body>
 
   <section class="game-section">
-    <h2 class="line-title" style="margin-left: 5%;">Trending Games</h2>
-    <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 class="line-title" style="margin-left: 5%;">trending games</h2>
+    <div style="display: flex; justify-content: center;">
       <div class="owl-carousel custom-carousel owl-theme">
         <div class="item" data-position="0" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
           <div class="item-desc">
             <h3>Dota 2</h3>
-            <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the Ancients.</p>
+            <p>Dota 2 is a multiplayer online battle arena by Valve.</p>
           </div>
         </div>
         <div class="item" data-position="1" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
           <div class="item-desc">
             <h3>The Witcher 3</h3>
-            <p>The Witcher 3 is a fantasy RPG based on novels, developed by CD Projekt RED with open world freedom.</p>
+            <p>The Witcher 3 is an action role-playing game developed by CD Projekt.</p>
           </div>
         </div>
         <div class="item" data-position="2" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
           <div class="item-desc">
             <h3>RDR 2</h3>
-            <p>Red Dead Redemption 2 is an epic tale of life in America’s unforgiving heartland by Rockstar Games.</p>
+            <p>Red Dead Redemption 2 is an action-adventure game by Rockstar Games.</p>
           </div>
         </div>
         <div class="item" data-position="3" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
           <div class="item-desc">
             <h3>PUBG Mobile</h3>
-            <p>PUBG is a battle royale where 100 players fight to be the last one standing. Developed by Krafton.</p>
+            <p>PUBG is a battle royale game developed and published by PUBG Studios.</p>
           </div>
         </div>
         <div class="item" data-position="4" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/fortnite.jpg);">
           <div class="item-desc">
             <h3>Fortnite</h3>
-            <p>Fortnite is a free-to-play battle royale with building mechanics, created by Epic Games.</p>
+            <p>Fortnite is a battle royale game developed by Epic Games.</p>
           </div>
         </div>
         <div class="item" data-position="5" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/far-cry-5.jpg);">
           <div class="item-desc">
             <h3>Far Cry 5</h3>
-            <p>Far Cry 5 is a first-person shooter by Ubisoft set in an open-world, rural America taken over by a cult.</p>
+            <p>Far Cry 5 is a 2018 first-person shooter game developed by Ubisoft.</p>
           </div>
         </div>
       </div>
@@ -211,25 +207,10 @@
         loop: true,
         center: true,
         margin: 30,
-        items: 3,
-        stagePadding: 100,
+        autoWidth: true,
         autoplay: true,
-        autoplayTimeout: 3500,
-        autoplayHoverPause: true,
-        responsive: {
-          0: {
-            items: 1,
-            stagePadding: 50
-          },
-          600: {
-            items: 2,
-            stagePadding: 60
-          },
-          1000: {
-            items: 3,
-            stagePadding: 100
-          }
-        }
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true
       });
 
       carousel.on("click", ".item", function () {

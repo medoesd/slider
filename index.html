@@ -23,21 +23,21 @@
           overflow-x: hidden;
         }
         h2 {
-          margin-bottom: 48px; /*  */
-          padding-bottom: 16px; /*  */
-          font-size: 20px; /*  */
+          margin-bottom: 48px;
+          padding-bottom: 16px;
+          font-size: 20px;
           font-weight: 700;
           position: relative;
           text-transform: capitalize;
         }
         h3 {
           margin: 0 0 10px;
-          font-size: 28px; /*  */
+          font-size: 28px;
           line-height: 36px;
         }
         .line-title {
           position: relative;
-          width: 400px; /*  */
+          width: 400px;
         }
         .line-title::before,
         .line-title::after {
@@ -59,23 +59,25 @@
 
         /* Main Section Styling */
         .game-section {
-          padding: 60px 5%; /*  */
+          padding: 60px 0;
         }
         .game-section .owl-stage-outer {
+            /* Adds padding so the centered, larger item doesn't get cut off */
             padding: 40px 0;
         }
         .game-section .owl-stage {
           display: flex;
-          align-items: center;
+          align-items: center; /* Crucial for vertical alignment */
         }
         .game-section .owl-item {
+          /* This ensures the items transition smoothly when changing size */
           transition: all 0.4s ease-in-out;
         }
 
         /* Individual Item Styling */
         .game-section .item {
           width: 320px;
-          height: 400px; /*  */
+          height: 400px;
           display: flex;
           align-items: flex-end;
           background: #343434 no-repeat center center / cover;
@@ -86,6 +88,7 @@
           cursor: pointer;
         }
         
+        /* The key change: The item inside the .owl-item.center is wider */
         .game-section .owl-item.center .item {
           width: 400px;
           box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -130,27 +133,9 @@
 
         /* Responsive Adjustments */
         @media (max-width: 767px) {
-          /* OPTIMIZED: Reduced vertical padding for mobile */
-          .game-section {
-            padding: 40px 5%;
-          }
-          /* OPTIMIZED: Adjusted title size and margin for mobile */
-          h2 {
-            font-size: 18px;
-            margin-bottom: 32px;
-          }
-          /* OPTIMIZED: Made title width responsive */
-          .line-title {
-            width: auto;
-          }
-           /* OPTIMIZED: Adjusted card heading for mobile */
-          h3 {
-            font-size: 24px;
-          }
           .game-section .item {
             width: 250px;
-            /* OPTIMIZED: Reduced height for better fit on phone screens */
-            height: 320px;
+            height: 350px;
           }
            .game-section .owl-item.center .item {
             width: 300px;
@@ -161,7 +146,7 @@
 <body>
 
     <section class="game-section">
-      <h2 class="line-title">trending games</h2>
+      <h2 class="line-title" style="margin-left: 5%;">trending games</h2>
       <div class="owl-carousel custom-carousel owl-theme">
         <div class="item" data-position="0" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
           <div class="item-desc">
@@ -212,34 +197,24 @@
           carousel.owlCarousel({
             loop: true,
             center: true,
-            autoWidth: true,
-            // OPTIMIZED: Set default margin for desktop
             margin: 30,
-            
-            // OPTIMIZED: Added responsive settings for mobile
-            responsive: {
-                // breakpoint from 0 up
-                0: {
-                    // Reduced margin between items on phones
-                    margin: 15 
-                },
-                // breakpoint from 768 up
-                768: {
-                     // Default margin for tablets and desktops
-                    margin: 30
-                }
-            }
+            autoWidth: true
           });
 
-          // Click handler to center item on click
+          // New click handler that uses the 'data-position' attribute
           carousel.on("click", ".item", function () {
+            // Find the parent .owl-item
             var $parentItem = $(this).closest('.owl-item');
             
+            // Check if the clicked item is already centered
             if ($parentItem.hasClass('center')) {
-              return;
+              return; // Do nothing if it's already the center item
             }
 
+            // Get the logical position from the data attribute
             var position = $(this).data('position');
+            
+            // Trigger the carousel to move to the item's logical position
             carousel.trigger('to.owl.carousel', [position, 300]);
           });
         });

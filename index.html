@@ -59,7 +59,7 @@
 
         /* Main Section Styling */
         .game-section {
-          padding: 60px 0;
+          padding: 60px 5%; /* MODIFIED: Added horizontal padding for alignment */
         }
         .game-section .owl-stage-outer {
             /* Adds padding so the centered, larger item doesn't get cut off */
@@ -146,7 +146,7 @@
 <body>
 
     <section class="game-section">
-      <h2 class="line-title" style="margin-left: 5%;">trending games</h2>
+      <h2 class="line-title">trending games</h2>
       <div class="owl-carousel custom-carousel owl-theme">
         <div class="item" data-position="0" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg);">
           <div class="item-desc">
@@ -213,7 +213,6 @@
 
             // Get the logical position from the data attribute
             var position = $(this).data('position');
-            
             // Trigger the carousel to move to the item's logical position
             carousel.trigger('to.owl.carousel', [position, 300]);
           });
